@@ -1,4 +1,4 @@
-export default function Import({ placeHolder, value, onChange, className }){
+export default function Input({ placeHolder, value, onChange, className }){
     return(
         <input
          type="text"
