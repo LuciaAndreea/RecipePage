@@ -4,11 +4,12 @@ import Button from "./Button";
 
 export default function RecipeDetails(){
     const {id} = useParams();
+    console.log("Recipe Id:" , id)
     const [recipe, setRecipe] = useState(null);
 
     useEffect(() =>{
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-        .then((res) => res.json)
+        .then((res) => res.json())
         .then((data) => setRecipe(data.meals ? data.meals[0] : null));
     } , [id]);
 

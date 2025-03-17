@@ -6,6 +6,7 @@ import Select from "./Select";
 
 export default function Home(){
     const [recipes, setRecipes] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [categories, setCategories] = useState([]);
     const [search, setSearch] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
@@ -20,10 +21,17 @@ export default function Home(){
 
 
    useEffect(() =>{
+    setLoading(true);
     fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert")
     .then((res) => res.json())
-    .then((data) => setRecipes(data.meals || []));
-   }, []);
+    .then((data) => {
+        setTimeout(() => {
+          setRecipes(data.meals || []);
+          setLoading(false);
+        }, 100); // Mic delay pentru a permite update-ul UI-ului
+      })
+      .catch((error) => console.error("Error fetching desserts:", error));
+  }, []);
 
    useEffect(() =>{
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`)
@@ -39,8 +47,8 @@ export default function Home(){
    );
 
    const sortedRecipes = [...filteredRecipes].sort((a,b) =>{
-    if(sortOrder === "asc") return a.strMeal.localCompare(b.strMeal);
-    return b.strMeal.localCompare(a.strMeal);
+    if(sortOrder === "asc") return a.strMeal.localeCompare(b.strMeal);
+    return b.strMeal.localeCompare(a.strMeal);
    });
 
    return(
