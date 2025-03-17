@@ -19,7 +19,6 @@ export default function Home(){
     }, []);
 
 
-
    useEffect(() =>{
     setLoading(true);
     fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert")
@@ -27,7 +26,7 @@ export default function Home(){
     .then((data) => {
         setTimeout(() => {
           setRecipes(data.meals || []);
-          setLoading(false);
+          setLoading(false); 
         }, 100); // Mic delay pentru a permite update-ul UI-ului
       })
       .catch((error) => console.error("Error fetching desserts:", error));
