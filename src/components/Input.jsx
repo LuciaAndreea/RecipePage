@@ -5,7 +5,7 @@ export default function Input({ placeHolder, value, onChange, className }){
          placeholder={placeHolder}
          value={value}
          onChange={onChange}
-         className={`p-2 w-full rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 ${className}`}
+         className={`p-2 w-full rounded-lg border border-gray-600 bg-stone-500 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 ${className}`}
          />
     )
 }
