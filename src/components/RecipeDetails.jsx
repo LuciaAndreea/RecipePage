@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import {useParams, Link} from "react-router-dom";
 import Button from "./Button";
 
+import logo from '../assets/logoImage.jpg';
+
+
 export default function RecipeDetails(){
     const {id} = useParams();
-    console.log("Recipe Id:" , id)
     const [recipe, setRecipe] = useState(null);
 
     useEffect(() =>{
@@ -19,28 +21,44 @@ export default function RecipeDetails(){
 
     return(
         <>
-        <div className="p-6 dark:bg-gray-900 min-h-screen text-white">
-            <Link to="/">
-            <Button className="mb-4">⬅ Back to Recipes</Button>
+       <div className="min-h-screen p-6 flex flex-col items-center"
+       style={{
+        backgroundImage:`url('/foodImage.jpg')`,
+        backgroundSize:"cover",
+        backgroundPosition:"center",
+        backgroundRepeat:"no repeat"
+       }}>
+       <Link to="/">
+            <Button className="mb-10 mr-400 cursor-pointer">← Back to Recipes</Button>
             </Link>
+        <h1 className="text-4xl font-bold text-center text-stone-300 mb-0 mr-220">{recipe.strMeal}</h1>
+        <img src={logo} alt="Logo" className="relative bottom-15 right-10 w-22 h-22 object-cover rounded-full "/>
+        <div className="relative mr-90 max-w-4xl shadow-lg rounded-lg overflow-hidden">
+            <img src={recipe.strMealThumb}
+             alt={recipe.strMeal}
+             className=" h-auto max-h-[400px] object-contain rounded-lg border border-stone-800 shadow-md" />
 
-            <h1 className="text-4xl font-bold">{recipe.strMeal}</h1>
-            <p className="text-yellow-400 text-lg mt-2">{recipe.strCategory} | {recipe.strArea}</p>
-            <img className="w-full max-w-lg mx-auto rounded-lg mt-4" src={recipe.strMealThumb} alt={recipe.strMeal} />
-
-            <h2 className="text-2xl font-semibold mt-6">Ingredients:</h2>
-            <ul className="list-disc list-inside">
-                {Array.from({ length: 20},(_,i) => i+i )
-                .map((i) => recipe[`strIngredients${i}`] && `${recipe[`strIngredients${i}`]} - ${recipe[`strMeasure${i}`]}`)
-                .filter(Boolean)
-                .map((ingredient, index) =>(
-                    <li key={index}>{ingredient}</li>
-                ))}
-            </ul>
-
-            <h2 className="text-2xl font-semibold mt-6">Instructions:</h2>
-            <p className="whitespace-pre-line">{recipe.strInstructions}</p>
+             
+             <div className="p-6">
+                <h2 className="text-2xl font-semibold text-stone-300 mb-4">Ingredients</h2>
+                <ul className="list-disc list-inside text-stone-300">
+                    {[...Array(20)].map((_,i)=>{
+                        const ingredient = recipe[`strIngredient${i+1}`];
+                        const measure = recipe[`strMeasure${i+1}`];
+                        return(
+                            ingredient &&(
+                                <li key={i}>{measure} {ingredient}</li>
+                            )
+                        );
+                    })}
+                </ul>
+             </div>
+             <div className="p-6">
+                <h1 className="text-2xl font-semibold text-gray-700 b-4">Procedure</h1>
+                <p className="text-stone-300 leading-relaxed">{recipe.strInstructions}</p>
+             </div>
         </div>
+       </div>
         </>
     )
 }
