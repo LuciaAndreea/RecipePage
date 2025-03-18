@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 import Input from "./Input";
 import Button from "./Button";
-import Select from "./Select";
 import logo from '../assets/logoImage.jpg';
 import foodBackground from '../assets/food-background.jpg';
 
@@ -18,13 +17,19 @@ export default function Home(){
         fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
         .then((res) => res.json())
         .then((data) => {
-            setCategories(
-                data.categories.map((cat) =>({
+            setCategories([
+              {
+                id: "all",
+                name: "All recipes",
+                image: "https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg"
+              },
+            
+                ...data.categories.map((cat) =>({
                     id: cat.idCategory,
                     name: cat.strCategory,
                     image: cat.strCategoryThumb,
         }))
-            )});
+            ])});
     }, []);
 
 
@@ -42,9 +47,40 @@ export default function Home(){
   }, []);
 
    useEffect(() =>{
+    if(selectedCategory === "All recipes"){
+      fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+      .then((res) => res.json())
+      .then((data) =>{
+        const categoryNames = data.categories.map((cat)=> cat.strCategory);
+
+        Promise.all(
+          categoryNames.map((category)=>
+          fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+        .then((res) => res.json())
+        .then((data) => data.meals || []))
+        )
+        .then((allMeals) =>{
+          const sortedMeals = allMeals.flat().sort((a,b) =>
+            a.strMeal.localeCompare(b.strMeal)
+        );
+          setRecipes(sortedMeals);
+          setLoading(false);
+        });
+      })
+
+      .catch((error) => console.log("Error fetching all recipes", error));
+    }else{
+
+
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`)
     .then((res) => res.json())
-    .then((data) => setRecipes(data.meals || []));
+    .then((data) =>{
+      const sortedMeals = (data.meals || []).sort((a,b) =>
+        a.strMeal.localeCompare(b.strMeal));
+      setRecipes(sortedMeals);
+    })
+    .catch((error) => console.error("Error fetching recipes: ",error));
+  }
    }, [selectedCategory]);
 
 
