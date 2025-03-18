@@ -61,29 +61,29 @@ export default function Home(){
 
    return(
     <>
-    <div className="flex bg-gray-900 min-h-screen text-white">
+    <div className="flex bg-neutral-900 min-h-screen text-white">
       {/* Sidebar cu categorii */}
-      <aside className="w-1/4 bg-gray-800 flex flex-col items-center py-6">
+      <aside className="w-1/4 bg-neutral-800 flex flex-col items-center py-6">
       <div className="w-32 h-32 mb-6">
         <img src={logo} alt="Logo" className="w-full h-full object-cover rounded-full shadow-lg"/>
       </div>
 
-      <div className="w-full flex-1 overflow-auto px-4">
+      <div className="w-full flex-1 px-4">
         <h2 className="text-lg font-bold mb-4 text-center">Categories</h2>
         <ul className="space-y-3 ">
           {categories.map((category) => (
             <li
               key={category.id}
               onClick={() => setSelectedCategory(category.name)}
-              className={`border-1 border-stone-400 cursor-pointer rounded-md text-xl text-center hover:bg-gray-700 transition transform translate-y-2 p-2 ${
-                selectedCategory === category.name ? "bg-gray-700 font-bold " : ""
+              className={`border-1 border-stone-400 cursor-pointer p-4 rounded-md text-xl flex fles-col gap-5 items-center hover:bg-stone-500 transition transform translate-y-2 p-2 ${
+                selectedCategory === category.name ? "bg-stone-600 font-bold " : ""
               }`}
             >
                 <img
                  src={category.image}
                  alt={category.name}
                  className="w-12 h-12 rounded-full object-cover shadow-md" />
-              {category.name}
+               <span>{category.name}</span>
             </li>
           ))}
         </ul>
@@ -108,9 +108,9 @@ export default function Home(){
             value={search}
             onChange={(event) => setSearch(event.target.value)}
           />
-          <Select options={categories.map((cat) => cat.name)} onChange={(event) => setSelectedCategory(event.target.value)} />
+          
           <Button onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}>
-            Sort {sortOrder === "asc" ? "🔽" : "🔼"}
+            Sort {sortOrder === "asc" ? "▼" : "▲"}
           </Button>
         </div>
 
