@@ -120,7 +120,7 @@ export default function Home(){
       {/* Sidebar cu categorii */}
       <aside className="hidden md:block w-1/4 bg-neutral-800 text-white p-4 min-h-screen">
       <div className="w-32 h-32 mb-6">
-        <img src={logo} alt="Logo" className="w-full h-full object-cover rounded-full shadow-lg"/>
+        <img src={logo} alt="Logo" className="w-full h-full object-cover rounded-full shadow-lg ml-39"/>
       </div>
 
       <div className="w-full flex-1 px-4">
@@ -174,7 +174,7 @@ export default function Home(){
         {loading ? (
           <p className="text-gray-400">Loading...</p>
         ) : recipes.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {sortedRecipes.map((recipe) => (
               <Card key={recipe.idMeal} id={recipe.idMeal} image={recipe.strMealThumb} title={recipe.strMeal} />
             ))}
