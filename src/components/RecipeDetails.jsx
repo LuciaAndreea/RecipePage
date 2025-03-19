@@ -29,14 +29,13 @@ export default function RecipeDetails(){
         backgroundRepeat:"no repeat"
        }}>
        <Link to="/">
-            <Button className="mb-10 mr-400 cursor-pointer">← Back to Recipes</Button>
+            <Button className="absolute top-4 left-4 bg-neutral-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-neutral-700 transition duration-300">← Back to Recipes</Button>
             </Link>
-        <h1 className="text-4xl font-bold text-center text-stone-300 mb-0 mr-220">{recipe.strMeal}</h1>
-        <img src={logo} alt="Logo" className="relative bottom-15 right-10 w-22 h-22 object-cover rounded-full "/>
-        <div className="relative mr-90 max-w-4xl shadow-lg rounded-lg overflow-hidden">
+        <h1 className="text-4xl font-bold text-center text-stone-300 mt-15 mr-220">{recipe.strMeal}</h1>
+        <div className="relative mr-90 mt-19 max-w-4xl shadow-lg rounded-lg overflow-hidden">
             <img src={recipe.strMealThumb}
              alt={recipe.strMeal}
-             className=" h-auto max-h-[400px] object-contain rounded-lg border border-stone-800 shadow-md" />
+             className=" h-auto max-h-[500px] object-contain rounded-lg border border-stone-800 shadow-md" />
 
              
              <div className="p-6">
