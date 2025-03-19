@@ -98,17 +98,17 @@ export default function Home(){
 
    return(
     <>
-    <nav className="bg-gray-900 text-white p-4 flex justify-between items-center md:hidden">
+    <nav className="bg-neutral-900 text-white p-4 flex justify-between items-center md:hidden">
       <h1 className="text-xl font-bold">Recipe App</h1>
       <button onClick={() => setMenuOpen(!menuOpen)} className="text-2xl">🍔</button>
     </nav>
 
     {menuOpen && (
-      <div className="absolute top-0 left-0 w-64 h-full bg-gray-800 text-white p-4 z-50">
+      <div className="absolute top-0 left-0 w-64 h-full bg-stone-600 text-white p-4 z-50">
         <button onClick={() => setMenuOpen(false)} className="text-xl mb-4">❌ Close</button>
         <ul>
           {categories.map((category, index) =>(
-            <li key={index} className="p-2 cursor-pointer hober:bg-gray-700" onClick={() =>{setSelectedCategory(category.name); setMenuOpen(false);}}>
+            <li key={index} className="p-2 cursor-pointer hover:bg-gray-700" onClick={() =>{setSelectedCategory(category.name); setMenuOpen(false);}}>
               {category.image && <img src={category.image} alt={category.name} className="w-6 h-6 inline-block mr-2"></img>}
               {category.name}
             </li>
@@ -118,7 +118,7 @@ export default function Home(){
     )}
     <div className="flex bg-neutral-900 min-h-screen text-white">
       {/* Sidebar cu categorii */}
-      <aside className="hidden md:block w-1/4 bg-gray-800 text-white p-4 min-h-screen">
+      <aside className="hidden md:block w-1/4 bg-neutral-800 text-white p-4 min-h-screen">
       <div className="w-32 h-32 mb-6">
         <img src={logo} alt="Logo" className="w-full h-full object-cover rounded-full shadow-lg"/>
       </div>
