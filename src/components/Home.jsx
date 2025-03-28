@@ -119,8 +119,8 @@ export default function Home(){
     <div className="flex bg-neutral-900 min-h-screen text-white">
       {/* Sidebar cu categorii */}
       <aside className="hidden md:block w-1/4 bg-neutral-800 text-white p-4 min-h-screen">
-      <div className="w-32 h-32 mb-6">
-        <img src={logo} alt="Logo" className="w-full h-full object-cover rounded-full shadow-lg ml-39"/>
+      <div className="flex justify-center items-center w-full mt-6 md:mt-10">
+        <img src={logo} alt="Logo" className="w-32 h-auto md:w-40 lg:w-48 rounded-full"/>
       </div>
 
       <div className="w-full flex-1 px-4">
@@ -130,14 +130,15 @@ export default function Home(){
             <li
               key={category.id}
               onClick={() => setSelectedCategory(category.name)}
-              className={`border-1 border-stone-400 cursor-pointer p-4 rounded-md text-xl flex fles-col gap-5 items-center hover:bg-stone-500 transition transform translate-y-2 p-2 ${
-                selectedCategory === category.name ? "bg-stone-600 font-bold " : ""
-              }`}
+              className={`border border-stone-400 cursor-pointer p-2 md:p-3 lg:p-4 rounded-md text-sm md:text-md lg:text-lg flex flex-col gap-3  flex items-center 
+                    hover:bg-stone-500 transition duration-300 transform active:scale-95  ${
+                selectedCategory === category.name ? "bg-stone-600 font-bold " : "bg-neutral-800"
+              }  text-center text-lg sm:text-sm md:text-base lg:text-lg w-full sm:w-auto` }
             >
                 <img
                  src={category.image}
                  alt={category.name}
-                 className="w-12 h-12 rounded-full object-cover shadow-md" />
+                 className="w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 rounded-full object-cover shadow-md" />
                <span>{category.name}</span>
             </li>
           ))}
@@ -174,7 +175,7 @@ export default function Home(){
         {loading ? (
           <p className="text-gray-400">Loading...</p>
         ) : recipes.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4">
             {sortedRecipes.map((recipe) => (
               <Card key={recipe.idMeal} id={recipe.idMeal} image={recipe.strMealThumb} title={recipe.strMeal} />
             ))}
