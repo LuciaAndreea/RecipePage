@@ -1,12 +1,12 @@
 
-Recipe Listing Web Application
+👨‍🍳 Recipe Listing Web Application
 
-Live Demo
+🟢 Live Demo
 🔗 [View the Project](https://recipe-page-delta-flax.vercel.app)
 
 This project is a responsive recipe listing web application built using React and Tailwind CSS. It allows users to browse different food categories, view recipes, and navigate between pages seamlessly.
 
-Key Features:
+🚀 Key Features:
 
 Recipe Cards – Displays recipes dynamically with images and titles
 
@@ -18,7 +18,7 @@ Back to Recipes Button – Smooth navigation for a better user experience
 
 Responsive Design – Optimized for desktops, laptops, tablets, and mobile devices
 
-Technologies Used:
+🛠️ Technologies Used:
 
 React – For building the interactive UI
 
