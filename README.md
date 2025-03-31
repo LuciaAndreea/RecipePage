@@ -2,7 +2,7 @@
 👨‍🍳 Recipe Listing Web Application
 
 🟢 Live Demo
-🔗 [View the Project]([https://my-library-wine-zeta.vercel.app](https://recipe-page-delta-flax.vercel.app))
+🔗 [View the Project](https://my-library-wine-zeta.vercel.app)
 
 This project is a responsive recipe listing web application built using React and Tailwind CSS. It allows users to browse different food categories, view recipes, and navigate between pages seamlessly.
 
